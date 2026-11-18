@@ -1,0 +1,40 @@
+# Copy to .github/workflows/scheduled-audit.yml in a repo of your own to audit
+# your AWS account every Monday and keep the reports as build artifacts.
+#
+# Uses GitHub OIDC, so no long-lived AWS keys are stored in GitHub. Create an IAM
+# role that trusts token.actions.githubusercontent.com for your repo, attach
+# docs/iam-policy.json (or the AWS-managed SecurityAudit policy) to it, and put
+# its ARN in a repository variable named AUDIT_ROLE_ARN.
+name: Weekly AWS compliance audit
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  id-token: write   # needed for OIDC
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install git+https://github.com/DaveyD347/aws-compliance-auditor.git
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AUDIT_ROLE_ARN }}
+          aws-region: us-east-1
+      - name: Run audit
+        run: aws-audit --format md,html,json --output-dir reports --fail-on critical
+      - name: Publish summary
+        if: always()
+        run: cat reports/*.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compliance-report
+          path: reports/

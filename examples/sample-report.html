@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AWS Compliance Report · 123456789012</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #fff; --text: #1d2330; --muted: #5f6b7a; --border: #e2e6ec;
+    --critical: #c62828; --high: #e65100; --medium: #b58900; --low: #1565c0; --pass: #2e7d32;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #11151c; --card: #1a2029; --text: #e6e9ee; --muted: #9aa5b4; --border: #2a323e;
+      --critical: #ef5350; --high: #ff8a50; --medium: #e0b84a; --low: #64a8f0; --pass: #66bb6a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { margin: 0 0 4px; font-size: 26px; }
+  h2 { margin: 36px 0 12px; font-size: 19px; }
+  .meta { color: var(--muted); font-size: 14px; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 24px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .card .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+  .card .value { font-size: 28px; font-weight: 700; margin-top: 4px; }
+  .grade-A, .grade-B { color: var(--pass); } .grade-C { color: var(--medium); } .grade-D, .grade-F { color: var(--critical); }
+  .bar { display: flex; height: 10px; border-radius: 5px; overflow: hidden; background: var(--border); margin-top: 10px; }
+  .bar span { display: block; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  tr:last-child td { border-bottom: 0; }
+  .table-wrap { overflow-x: auto; }
+  .nowrap { white-space: nowrap; }
+  .sev { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; color: #fff; }
+  .sev-CRITICAL { background: var(--critical); } .sev-HIGH { background: var(--high); }
+  .sev-MEDIUM { background: var(--medium); } .sev-LOW { background: var(--low); } .sev-INFO { background: var(--muted); }
+  .st-PASS { color: var(--pass); font-weight: 600; } .st-FAIL { color: var(--critical); font-weight: 600; }
+  .st-ERROR { color: var(--medium); font-weight: 600; } .st-N\/A { color: var(--muted); }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .filters label { background: var(--card); border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; cursor: pointer; font-size: 13px; }
+  details { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { margin: 8px 0 0; font-family: ui-monospace, Menlo, monospace; font-size: 13px; white-space: pre-wrap; word-break: break-word; }
+</style>
+</head>
+<body>
+<main>
+  <h1>AWS Compliance Audit Report</h1>
+  <div class="meta">
+    Account <code>123456789012</code> · 1 region(s) ·
+    generated 2026-11-18 22:16 UTC in 2.8s
+  </div>
+
+  <section class="cards">
+    <div class="card"><div class="label">Grade</div><div class="value grade-F">F</div></div>
+    <div class="card"><div class="label">Compliance</div><div class="value">30.6%</div>
+      <div class="bar"><span style="width: 30.6%; background: var(--pass)"></span></div></div>
+    <div class="card"><div class="label">Risk score</div><div class="value">155</div></div>
+    <div class="card"><div class="label">Failed</div><div class="value">26</div></div>
+    <div class="card"><div class="label">Passed</div><div class="value">14</div></div>
+    <div class="card"><div class="label">Not evaluated</div><div class="value">0</div></div>
+  </section>
+
+  <section class="cards">
+    
+    <div class="card"><div class="label"><span class="sev sev-CRITICAL">CRITICAL</span></div>
+      <div class="value">6</div></div>
+    
+    <div class="card"><div class="label"><span class="sev sev-HIGH">HIGH</span></div>
+      <div class="value">9</div></div>
+    
+    <div class="card"><div class="label"><span class="sev sev-MEDIUM">MEDIUM</span></div>
+      <div class="value">7</div></div>
+    
+    <div class="card"><div class="label"><span class="sev sev-LOW">LOW</span></div>
+      <div class="value">4</div></div>
+    
+  </section>
+
+  <h2>Failed findings</h2>
+  
+  <div class="filters" id="filters">
+    <label><input type="checkbox" value="CRITICAL" checked> CRITICAL</label><label><input type="checkbox" value="HIGH" checked> HIGH</label><label><input type="checkbox" value="MEDIUM" checked> MEDIUM</label><label><input type="checkbox" value="LOW" checked> LOW</label>
+  </div>
+  <div class="table-wrap">
+  <table id="findings">
+    <thead><tr><th>Severity</th><th>Check</th><th>Region</th><th>Resource</th><th>Issue</th></tr></thead>
+    <tbody>
+    
+      <tr data-sev="CRITICAL">
+        <td><span class="sev sev-CRITICAL">CRITICAL</span></td>
+        <td><strong>EC2-003</strong><br><span class="meta">Security groups do not allow unrestricted ingress to sensitive ports</span></td>
+        <td class="nowrap">us-east-1</td>
+        <td><code>sg-95e328c65c3f092ff (windows-rdp)</code></td>
+        <td>Open to the internet: tcp 3389 from 0.0.0.0/0 [3389/RDP]</td>
+      </tr>
+    
+      <tr data-sev="CRITICAL">
+        <td><span class="sev sev-CRITICAL">CRITICAL</span></td>
+        <td><strong>EC2-003</strong><br><span class="meta">Security groups do not allow unrestricted ingress to sensitive ports</span></td>
+        <td class="nowrap">us-east-1</td>
+        <td><code>sg-e19977b8a00818d33 (bastion-ssh)</code></td>
+        <td>Open to the internet: tcp 22 from 0.0.0.0/0 [22/SSH]</td>
+      </tr>
+    
+      <tr data-sev="CRITICAL">
+        <td><span class="sev sev-CRITICAL">CRITICAL</span></td>
+        <td><strong>EC2-004</strong><br><span class="meta">EBS snapshots are not publicly shared</span></td>
+        <td class="nowrap">us-east-1</td>
+        <td><code>snap-75b036760536a7420</code></td>
+        <td>Snapshot is public (createVolumePermission: all)</td>
+      </tr>
+    
+      <tr data-sev="CRITICAL">
+        <td><span class="sev sev-CRITICAL">CRITICAL</span></td>
+        <td><strong>IAM-001</strong><br><span class="meta">Root account has MFA enabled</span></td>
+        <td class="nowrap">global</td>
+        <td><code>&lt;root_account&gt;</code></td>
+        <td>Root MFA is NOT enabled</td>
+      </tr>
+    
+      <tr data-sev="CRITICAL">
+        <td><span class="sev sev-CRITICAL">CRITICAL</span></td>
+        <td><strong>S3-002</strong><br><span class="meta">S3 bucket ACL does not grant public access</span></td>
+        <td class="nowrap">global</td>
+        <td><code>acme-marketing-assets</code></td>
+        <td>ACL grants public access (AllUsers:READ)</td>
+      </tr>
+    
+      <tr data-sev="CRITICAL">
+        <td><span class="sev sev-CRITICAL">CRITICAL</span></td>
+        <td><strong>S3-003</strong><br><span class="meta">S3 bucket policy does not allow anonymous access</span></td>
+        <td class="nowrap">global</td>
+        <td><code>acme-backups</code></td>
+        <td>Policy statement(s) LegacyPublicRead allow Principal &#39;*&#39;</td>
+      </tr>
+    
+      <tr data-sev="HIGH">
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td><strong>CT-001</strong><br><span class="meta">A multi-region CloudTrail trail is logging</span></td>
+        <td class="nowrap">global</td>
+        <td><code>cloudtrail</code></td>
+        <td>No multi-region trail is actively logging</td>
+      </tr>
+    
+      <tr data-sev="HIGH">
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td><strong>EC2-001</strong><br><span class="meta">EBS volumes are encrypted</span></td>
+        <td class="nowrap">us-east-1</td>
+        <td><code>vol-79092df06ec43046f</code></td>
+        <td>Volume is not encrypted</td>
+      </tr>
+    
+      <tr data-sev="HIGH">
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td><strong>EC2-001</strong><br><span class="meta">EBS volumes are encrypted</span></td>
+        <td class="nowrap">us-east-1</td>
+        <td><code>vol-c96eca516db96b91d</code></td>
+        <td>Volume is not encrypted</td>
+      </tr>
+    
+      <tr data-sev="HIGH">
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td><strong>IAM-003</strong><br><span class="meta">IAM users with console access have MFA</span></td>
+        <td class="nowrap">global</td>
+        <td><code>jdoe</code></td>
+        <td>Console password enabled without MFA</td>
+      </tr>
+    
+      <tr data-sev="HIGH">
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td><strong>IAM-006</strong><br><span class="meta">No attached customer-managed policies grant full &#39;*:*&#39; admin</span></td>
+        <td class="nowrap">global</td>
+        <td><code>LegacyFullAccess</code></td>
+        <td>Grants &#39;*:*&#39; and is attached to 1 entities</td>
+      </tr>
+    
+      <tr data-sev="HIGH">
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td><strong>RDS-001</strong><br><span class="meta">RDS instances are not publicly accessible</span></td>
+        <td class="nowrap">us-east-1</td>
+        <td><code>orders-db</code></td>
+        <td>Instance is publicly accessible</td>
+      </tr>
+    
+      <tr data-sev="HIGH">
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td><strong>RDS-002</strong><br><span class="meta">RDS instance storage is encrypted</span></td>
+        <td class="nowrap">us-east-1</td>
+        <td><code>orders-db</code></td>
+        <td>Storage is NOT encrypted</td>
+      </tr>
+    
+      <tr data-sev="HIGH">
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td><strong>S3-001</strong><br><span class="meta">S3 bucket Block Public Access is fully enabled</span></td>
+        <td class="nowrap">global</td>
+        <td><code>acme-backups</code></td>
+        <td>Block Public Access settings disabled: BlockPublicAcls, IgnorePublicAcls, BlockPublicPolicy, RestrictPublicBuckets</td>
+      </tr>
+    
+      <tr data-sev="HIGH">
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td><strong>S3-001</strong><br><span class="meta">S3 bucket Block Public Access is fully enabled</span></td>
+        <td class="nowrap">global</td>
+        <td><code>acme-marketing-assets</code></td>
+        <td>Block Public Access settings disabled: BlockPublicAcls, IgnorePublicAcls, BlockPublicPolicy, RestrictPublicBuckets</td>
+      </tr>
+    
+      <tr data-sev="MEDIUM">
+        <td><span class="sev sev-MEDIUM">MEDIUM</span></td>
+        <td><strong>EC2-002</strong><br><span class="meta">EBS encryption by default is enabled</span></td>
+        <td class="nowrap">us-east-1</td>
+        <td><code>us-east-1</code></td>
+        <td>EBS encryption by default is disabled</td>
+      </tr>
+    
+      <tr data-sev="MEDIUM">
+        <td><span class="sev sev-MEDIUM">MEDIUM</span></td>
+        <td><strong>EC2-005</strong><br><span class="meta">EC2 instances require IMDSv2</span></td>
+        <td class="nowrap">us-east-1</td>
+        <td><code>i-1dede73d2f9f7dd04</code></td>
+        <td>IMDSv1 is allowed (HttpTokens=optional)</td>
+      </tr>
+    
+      <tr data-sev="MEDIUM">
+        <td><span class="sev sev-MEDIUM">MEDIUM</span></td>
+        <td><strong>IAM-005</strong><br><span class="meta">Account password policy meets the baseline</span></td>
+        <td class="nowrap">global</td>
+        <td><code>account-password-policy</code></td>
+        <td>minimum length 8 &lt; 14; reuse prevention 0 &lt; 24</td>
+      </tr>
+    
+      <tr data-sev="MEDIUM">
+        <td><span class="sev sev-MEDIUM">MEDIUM</span></td>
+        <td><strong>S3-004</strong><br><span class="meta">S3 bucket has default encryption configured</span></td>
+        <td class="nowrap">global</td>
+        <td><code>acme-backups</code></td>
+        <td>No default encryption configured</td>
+      </tr>
+    
+      <tr data-sev="MEDIUM">
+        <td><span class="sev sev-MEDIUM">MEDIUM</span></td>
+        <td><strong>S3-004</strong><br><span class="meta">S3 bucket has default encryption configured</span></td>
+        <td class="nowrap">global</td>
+        <td><code>acme-cloudtrail-logs</code></td>
+        <td>No default encryption configured</td>
+      </tr>
+    
+      <tr data-sev="MEDIUM">
+        <td><span class="sev sev-MEDIUM">MEDIUM</span></td>
+        <td><strong>S3-004</strong><br><span class="meta">S3 bucket has default encryption configured</span></td>
+        <td class="nowrap">global</td>
+        <td><code>acme-marketing-assets</code></td>
+        <td>No default encryption configured</td>
+      </tr>
+    
+      <tr data-sev="MEDIUM">
+        <td><span class="sev sev-MEDIUM">MEDIUM</span></td>
+        <td><strong>S3-004</strong><br><span class="meta">S3 bucket has default encryption configured</span></td>
+        <td class="nowrap">global</td>
+        <td><code>acme-prod-data</code></td>
+        <td>No default encryption configured</td>
+      </tr>
+    
+      <tr data-sev="LOW">
+        <td><span class="sev sev-LOW">LOW</span></td>
+        <td><strong>CT-002</strong><br><span class="meta">CloudTrail log file validation is enabled</span></td>
+        <td class="nowrap">global</td>
+        <td><code>org-trail</code></td>
+        <td>Log file validation disabled</td>
+      </tr>
+    
+      <tr data-sev="LOW">
+        <td><span class="sev sev-LOW">LOW</span></td>
+        <td><strong>S3-005</strong><br><span class="meta">S3 bucket versioning is enabled</span></td>
+        <td class="nowrap">global</td>
+        <td><code>acme-backups</code></td>
+        <td>Versioning is Disabled</td>
+      </tr>
+    
+      <tr data-sev="LOW">
+        <td><span class="sev sev-LOW">LOW</span></td>
+        <td><strong>S3-005</strong><br><span class="meta">S3 bucket versioning is enabled</span></td>
+        <td class="nowrap">global</td>
+        <td><code>acme-cloudtrail-logs</code></td>
+        <td>Versioning is Disabled</td>
+      </tr>
+    
+      <tr data-sev="LOW">
+        <td><span class="sev sev-LOW">LOW</span></td>
+        <td><strong>S3-005</strong><br><span class="meta">S3 bucket versioning is enabled</span></td>
+        <td class="nowrap">global</td>
+        <td><code>acme-marketing-assets</code></td>
+        <td>Versioning is Disabled</td>
+      </tr>
+    
+    </tbody>
+  </table>
+  </div>
+  
+
+  
+  <h2>Remediation</h2>
+  
+  <details><summary>EC2-003 · Security groups do not allow unrestricted ingress to sensitive ports</summary><p>Restrict the rule source to known CIDRs or security groups, or use SSM Session Manager instead of opening SSH/RDP.</p></details>
+  
+  <details><summary>EC2-004 · EBS snapshots are not publicly shared</summary><p>aws ec2 modify-snapshot-attribute --snapshot-id &lt;id&gt; --attribute createVolumePermission --operation-type remove --group-names all; then enable &#39;Block public access for EBS snapshots&#39;.</p></details>
+  
+  <details><summary>IAM-001 · Root account has MFA enabled</summary><p>Sign in as root and enable a hardware or virtual MFA device under Security credentials.</p></details>
+  
+  <details><summary>S3-002 · S3 bucket ACL does not grant public access</summary><p>Remove the public grants (aws s3api put-bucket-acl --bucket &lt;name&gt; --acl private) and enable Object Ownership &#39;BucketOwnerEnforced&#39; to disable ACLs entirely.</p></details>
+  
+  <details><summary>S3-003 · S3 bucket policy does not allow anonymous access</summary><p>Restrict the Principal to specific accounts/roles or add a Condition (e.g. aws:SourceVpce, aws:PrincipalOrgID).</p></details>
+  
+  <details><summary>CT-001 · A multi-region CloudTrail trail is logging</summary><p>aws cloudtrail create-trail --name org-trail --s3-bucket-name &lt;bucket&gt; --is-multi-region-trail --enable-log-file-validation &amp;&amp; aws cloudtrail start-logging --name org-trail</p></details>
+  
+  <details><summary>EC2-001 · EBS volumes are encrypted</summary><p>Snapshot the volume, copy the snapshot with --encrypted, create a new volume from it and swap it in. Enable EBS encryption by default to prevent recurrence.</p></details>
+  
+  <details><summary>IAM-003 · IAM users with console access have MFA</summary><p>Enforce MFA for the user, or remove the login profile if console access is not needed.</p></details>
+  
+  <details><summary>IAM-006 · No attached customer-managed policies grant full &#39;*:*&#39; admin</summary><p>Replace the policy with a scoped one, or use the AWS-managed AdministratorAccess policy only for a small, MFA-protected break-glass role.</p></details>
+  
+  <details><summary>RDS-001 · RDS instances are not publicly accessible</summary><p>aws rds modify-db-instance --db-instance-identifier &lt;id&gt; --no-publicly-accessible --apply-immediately</p></details>
+  
+  <details><summary>RDS-002 · RDS instance storage is encrypted</summary><p>Encryption can&#39;t be enabled in place: snapshot the instance, copy the snapshot with a KMS key, and restore a new instance from the encrypted copy.</p></details>
+  
+  <details><summary>S3-001 · S3 bucket Block Public Access is fully enabled</summary><p>aws s3api put-public-access-block --bucket &lt;name&gt; --public-access-block-configuration BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true</p></details>
+  
+  <details><summary>EC2-002 · EBS encryption by default is enabled</summary><p>aws ec2 enable-ebs-encryption-by-default --region &lt;region&gt;</p></details>
+  
+  <details><summary>EC2-005 · EC2 instances require IMDSv2</summary><p>aws ec2 modify-instance-metadata-options --instance-id &lt;id&gt; --http-tokens required</p></details>
+  
+  <details><summary>IAM-005 · Account password policy meets the baseline</summary><p>aws iam update-account-password-policy --minimum-password-length 14 --password-reuse-prevention 24</p></details>
+  
+  <details><summary>S3-004 · S3 bucket has default encryption configured</summary><p>aws s3api put-bucket-encryption --bucket &lt;name&gt; --server-side-encryption-configuration &#39;{&#34;Rules&#34;:[{&#34;ApplyServerSideEncryptionByDefault&#34;:{&#34;SSEAlgorithm&#34;:&#34;aws:kms&#34;}}]}&#39;</p></details>
+  
+  <details><summary>CT-002 · CloudTrail log file validation is enabled</summary><p>aws cloudtrail update-trail --name &lt;trail&gt; --enable-log-file-validation</p></details>
+  
+  <details><summary>S3-005 · S3 bucket versioning is enabled</summary><p>aws s3api put-bucket-versioning --bucket &lt;name&gt; --versioning-configuration Status=Enabled</p></details>
+  
+  
+
+  <h2>All checks</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>ID</th><th>Check</th><th>Severity</th><th>Result</th><th>Pass</th><th>Fail</th></tr></thead>
+    <tbody>
+    
+      <tr>
+        <td><strong>CT-001</strong></td>
+        <td>A multi-region CloudTrail trail is logging<br><span class="meta">CIS AWS Foundations 3.1</span></td>
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+    
+      <tr>
+        <td><strong>CT-002</strong></td>
+        <td>CloudTrail log file validation is enabled<br><span class="meta">CIS AWS Foundations 3.2</span></td>
+        <td><span class="sev sev-LOW">LOW</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+    
+      <tr>
+        <td><strong>EC2-001</strong></td>
+        <td>EBS volumes are encrypted<br><span class="meta">CIS AWS Foundations 2.2.1</span></td>
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>1</td>
+        <td>2</td>
+      </tr>
+    
+      <tr>
+        <td><strong>EC2-002</strong></td>
+        <td>EBS encryption by default is enabled<br><span class="meta">CIS AWS Foundations 2.2.1</span></td>
+        <td><span class="sev sev-MEDIUM">MEDIUM</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+    
+      <tr>
+        <td><strong>EC2-003</strong></td>
+        <td>Security groups do not allow unrestricted ingress to sensitive ports<br><span class="meta">CIS AWS Foundations 5.2, CIS AWS Foundations 5.3</span></td>
+        <td><span class="sev sev-CRITICAL">CRITICAL</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>2</td>
+        <td>2</td>
+      </tr>
+    
+      <tr>
+        <td><strong>EC2-004</strong></td>
+        <td>EBS snapshots are not publicly shared</td>
+        <td><span class="sev sev-CRITICAL">CRITICAL</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+    
+      <tr>
+        <td><strong>EC2-005</strong></td>
+        <td>EC2 instances require IMDSv2<br><span class="meta">CIS AWS Foundations 5.6</span></td>
+        <td><span class="sev sev-MEDIUM">MEDIUM</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+    
+      <tr>
+        <td><strong>IAM-001</strong></td>
+        <td>Root account has MFA enabled<br><span class="meta">CIS AWS Foundations 1.5</span></td>
+        <td><span class="sev sev-CRITICAL">CRITICAL</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+    
+      <tr>
+        <td><strong>IAM-002</strong></td>
+        <td>Root account has no access keys<br><span class="meta">CIS AWS Foundations 1.4</span></td>
+        <td><span class="sev sev-CRITICAL">CRITICAL</span></td>
+        <td class="st-PASS">PASS</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+    
+      <tr>
+        <td><strong>IAM-003</strong></td>
+        <td>IAM users with console access have MFA<br><span class="meta">CIS AWS Foundations 1.10</span></td>
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+    
+      <tr>
+        <td><strong>IAM-004</strong></td>
+        <td>Active access keys are rotated within 90 days<br><span class="meta">CIS AWS Foundations 1.14</span></td>
+        <td><span class="sev sev-MEDIUM">MEDIUM</span></td>
+        <td class="st-PASS">PASS</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+    
+      <tr>
+        <td><strong>IAM-005</strong></td>
+        <td>Account password policy meets the baseline<br><span class="meta">CIS AWS Foundations 1.8, CIS AWS Foundations 1.9</span></td>
+        <td><span class="sev sev-MEDIUM">MEDIUM</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+    
+      <tr>
+        <td><strong>IAM-006</strong></td>
+        <td>No attached customer-managed policies grant full &#39;*:*&#39; admin<br><span class="meta">CIS AWS Foundations 1.16</span></td>
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+    
+      <tr>
+        <td><strong>RDS-001</strong></td>
+        <td>RDS instances are not publicly accessible<br><span class="meta">CIS AWS Foundations 2.3.3</span></td>
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+    
+      <tr>
+        <td><strong>RDS-002</strong></td>
+        <td>RDS instance storage is encrypted<br><span class="meta">CIS AWS Foundations 2.3.1</span></td>
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>0</td>
+        <td>1</td>
+      </tr>
+    
+      <tr>
+        <td><strong>S3-001</strong></td>
+        <td>S3 bucket Block Public Access is fully enabled<br><span class="meta">CIS AWS Foundations 2.1.4</span></td>
+        <td><span class="sev sev-HIGH">HIGH</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>2</td>
+        <td>2</td>
+      </tr>
+    
+      <tr>
+        <td><strong>S3-002</strong></td>
+        <td>S3 bucket ACL does not grant public access<br><span class="meta">CIS AWS Foundations 2.1.4</span></td>
+        <td><span class="sev sev-CRITICAL">CRITICAL</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>3</td>
+        <td>1</td>
+      </tr>
+    
+      <tr>
+        <td><strong>S3-003</strong></td>
+        <td>S3 bucket policy does not allow anonymous access</td>
+        <td><span class="sev sev-CRITICAL">CRITICAL</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>3</td>
+        <td>1</td>
+      </tr>
+    
+      <tr>
+        <td><strong>S3-004</strong></td>
+        <td>S3 bucket has default encryption configured<br><span class="meta">CIS AWS Foundations 2.1.1</span></td>
+        <td><span class="sev sev-MEDIUM">MEDIUM</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>0</td>
+        <td>4</td>
+      </tr>
+    
+      <tr>
+        <td><strong>S3-005</strong></td>
+        <td>S3 bucket versioning is enabled</td>
+        <td><span class="sev sev-LOW">LOW</span></td>
+        <td class="st-FAIL">FAIL</td>
+        <td>1</td>
+        <td>3</td>
+      </tr>
+    
+    </tbody>
+  </table>
+  </div>
+
+  
+</main>
+<script>
+  document.querySelectorAll('#filters input').forEach(function (box) {
+    box.addEventListener('change', function () {
+      var on = Array.from(document.querySelectorAll('#filters input:checked')).map(function (b) { return b.value; });
+      document.querySelectorAll('#findings tbody tr').forEach(function (row) {
+        row.style.display = on.indexOf(row.dataset.sev) >= 0 ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>
